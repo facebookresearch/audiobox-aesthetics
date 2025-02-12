@@ -14,7 +14,7 @@ import requests
 
 import submitit
 from tqdm import tqdm
-from .infer import load_dataset, main_predict
+from audiobox_aesthetics.infer import load_dataset, main_predict
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 

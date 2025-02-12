@@ -14,7 +14,7 @@ import torch
 import torchaudio
 import torch.nn.functional as F
 
-from .model.aes_wavlm import Normalize, WavlmAudioEncoderMultiOutput
+from audiobox_aesthetics.model.aes_wavlm import Normalize, WavlmAudioEncoderMultiOutput
 
 Batch = Dict[str, Any]
 
@@ -113,6 +113,8 @@ class AesWavlmPredictorMultiOutput:
             "bf16": torch.bfloat16,
         }.get(self.precision)
 
+        print("using precision", self.precision)
+
         self.target_transform = {
             axis: Normalize(
                 mean=ckpt["target_transform"][axis]["mean"],
@@ -205,8 +207,8 @@ def main_predict(input_file, ckpt, batch_size=10):
     for ii in tqdm(range(0, len(metadata), batch_size)):
         output = predictor.forward(metadata[ii : ii + batch_size])
         outputs.extend(output)
-    assert len(outputs) == len(
-        metadata
-    ), f"Output {len(outputs)} != input {len(metadata)} length"
+    assert len(outputs) == len(metadata), (
+        f"Output {len(outputs)} != input {len(metadata)} length"
+    )
 
     return outputs
