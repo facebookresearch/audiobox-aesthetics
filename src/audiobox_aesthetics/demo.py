@@ -6,7 +6,7 @@ from audiobox_aesthetics.inference import (
 )
 
 # Load the pre-trained model
-model = AudioBoxAesthetics.from_pretrained("audiobox-aesthetics")
+model = AudioBoxAesthetics.from_pretrained("thunnai/audiobox-aesthetics")
 model.eval()
 
 
