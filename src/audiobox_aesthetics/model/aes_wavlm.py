@@ -9,8 +9,8 @@ import sys
 from torch import nn
 import torch
 
-from .utils import create_mlp_block
-from .wavlm import WavLM, WavLMConfig
+from audiobox_aesthetics.model.utils import create_mlp_block
+from audiobox_aesthetics.model.wavlm import WavLM, WavLMConfig
 
 
 DEFAULT_AUDIO_CFG = WavLMConfig(

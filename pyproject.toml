@@ -6,23 +6,21 @@ build-backend = "setuptools.build_meta"
 name = "audiobox_aesthetics"
 version = "0.0.1"
 authors = [
-    {name="Andros Tjandra", email="androstj@meta.com"},
-    {name="Yi-Chiao Wu"},
-    {name="Baishan Guo"},
-    {name="John Hoffman"},
-    {name="Brian Ellis"},
-    {name="Apoorv Vyas"},
-    {name="Bowen Shi"},
-    {name="Sanyuan Chen"},
-    {name="Matt Le"},
-    {name="Nick Zacharov"},
-    {name="Carleigh Wood"},
-    {name="Ann Lee"},
-    {name="Wei-ning Hsu"}
+    { name = "Andros Tjandra", email = "androstj@meta.com" },
+    { name = "Yi-Chiao Wu" },
+    { name = "Baishan Guo" },
+    { name = "John Hoffman" },
+    { name = "Brian Ellis" },
+    { name = "Apoorv Vyas" },
+    { name = "Bowen Shi" },
+    { name = "Sanyuan Chen" },
+    { name = "Matt Le" },
+    { name = "Nick Zacharov" },
+    { name = "Carleigh Wood" },
+    { name = "Ann Lee" },
+    { name = "Wei-ning Hsu" },
 ]
-maintainers = [
-    {name="Andros Tjandra", email="androstj@meta.com"}
-]
+maintainers = [{ name = "Andros Tjandra", email = "androstj@meta.com" }]
 description = "Unified automatic quality assessment for speech, music, and sound."
 requires-python = ">=3.9"
 classifiers = [
@@ -30,14 +28,17 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 
 dependencies = [
-  "numpy",
-  "torch>=2.2.0",
-  "torchaudio",
-  "tqdm",
-  "submitit"
+    "numpy",
+    "torch>=2.2.0",
+    "torchaudio",
+    "tqdm",
+    "submitit",
+    "huggingface-hub>=0.28.1",
+    "pydantic>=2.10.6",
+    "safetensors>=0.5.2",
 ]
 
 [project.scripts]
@@ -47,4 +48,5 @@ audio-aes = "audiobox_aesthetics.cli:app"
 Homepage = "https://github.com/facebookresearch/audiobox-aesthetics"
 Issues = "https://github.com/facebookresearch/audiobox-aesthetics/issues"
 
-
+[dependency-groups]
+dev = ["gradio>=4.44.1", "ipykernel>=6.29.5", "pytest>=8.3.4"]

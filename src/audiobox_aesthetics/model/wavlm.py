@@ -244,17 +244,17 @@ def quant_noise(module, p, block_size):
 
     # 2D matrix
     if not is_conv:
-        assert (
-            module.weight.size(1) % block_size == 0
-        ), "Input features must be a multiple of block sizes"
+        assert module.weight.size(1) % block_size == 0, (
+            "Input features must be a multiple of block sizes"
+        )
 
     # 4D matrix
     else:
         # 1x1 convolutions
         if module.kernel_size == (1, 1):
-            assert (
-                module.in_channels % block_size == 0
-            ), "Input channels must be a multiple of block sizes"
+            assert module.in_channels % block_size == 0, (
+                "Input channels must be a multiple of block sizes"
+            )
         # regular convolutions
         else:
             k = module.kernel_size[0] * module.kernel_size[1]
@@ -356,16 +356,16 @@ class MultiheadAttention(nn.Module):
         self.head_dim = embed_dim // num_heads
         self.q_head_dim = self.head_dim
         self.k_head_dim = self.head_dim
-        assert (
-            self.head_dim * num_heads == self.embed_dim
-        ), "embed_dim must be divisible by num_heads"
+        assert self.head_dim * num_heads == self.embed_dim, (
+            "embed_dim must be divisible by num_heads"
+        )
         self.scaling = self.head_dim**-0.5
 
         self.self_attention = self_attention
         self.encoder_decoder_attention = encoder_decoder_attention
 
         assert not self.self_attention or self.qkv_same_dim, (
-            "Self-attention requires query, key and " "value to be of the same size"
+            "Self-attention requires query, key and value to be of the same size"
         )
 
         k_bias = True
@@ -1255,9 +1255,9 @@ class ConvFeatureExtractionModel(nn.Module):
                 nn.init.kaiming_normal_(conv.weight)
                 return conv
 
-            assert (
-                is_layer_norm and is_group_norm
-            ) is False, "layer norm and group norm are exclusive"
+            assert (is_layer_norm and is_group_norm) is False, (
+                "layer norm and group norm are exclusive"
+            )
 
             if is_layer_norm:
                 return nn.Sequential(
