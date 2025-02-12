@@ -51,6 +51,8 @@ if __name__ == "__main__":
         }
         for axis in target_transform.keys()
     }
+    # force precision to be bfloat16 to match infer class
+    model_cfg["precision"] = "bf16"
 
     model = AudioBoxAesthetics(
         sample_rate=16_000, target_transform=target_transform, **model_cfg

@@ -10,7 +10,7 @@ from audiobox_aesthetics.infer import make_inference_batch
 from pydantic import BaseModel
 import torchaudio
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 from typing import Optional, List
 import json
 
@@ -67,7 +67,7 @@ class AudioBoxAesthetics(
         proj_dropout: float = 0.0,
         nth_layer: int = 13,
         use_weighted_layer_sum: bool = True,
-        precision: str = "32",
+        precision: str = "bf16",
         normalize_embed: bool = True,
         output_dim: int = 1,
         target_transform: dict = None,

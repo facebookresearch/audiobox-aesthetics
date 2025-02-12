@@ -35,13 +35,14 @@ def test_inference_load_from_jsonl():
     model = AudioBoxAesthetics.from_pretrained(model_name)
     model.eval()
 
+    audio_path = audio_file_list.files[0].path
     predictions = model.predict_from_files(audio_file_list)
 
     single_pred = predictions[0]
-    assert single_pred["CE"] == cli_results[audio_file_list.files[0].path]["CE"]
-    assert single_pred["CU"] == cli_results[audio_file_list.files[0].path]["CU"]
-    assert single_pred["PC"] == cli_results[audio_file_list.files[0].path]["PC"]
-    assert single_pred["PQ"] == cli_results[audio_file_list.files[0].path]["PQ"]
+    assert single_pred["CE"] == cli_results[audio_path]["CE"]
+    assert single_pred["CU"] == cli_results[audio_path]["CU"]
+    assert single_pred["PC"] == cli_results[audio_path]["PC"]
+    assert single_pred["PQ"] == cli_results[audio_path]["PQ"]
 
 
 def test_inference_twice_on_same_audio_yields_same_result():
