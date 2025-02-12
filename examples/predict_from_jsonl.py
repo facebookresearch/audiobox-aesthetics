@@ -1,6 +1,6 @@
 from audiobox_aesthetics.inference import AudioBoxAesthetics, AudioFileList
 
-model = AudioBoxAesthetics.from_pretrained("audiobox-aesthetics")
+model = AudioBoxAesthetics.from_pretrained("thunnai/audiobox-aesthetics")
 model.eval()
 
 

@@ -10,11 +10,13 @@ cli_results = {
     },
 }
 
+model_name = "thunnai/audiobox-aesthetics"
+
 
 def test_inference():
     audio_path = "sample_audio/libritts_spk-84.wav"
     audio_file = AudioFile(path=audio_path)
-    model = AudioBoxAesthetics.from_pretrained("audiobox-aesthetics")
+    model = AudioBoxAesthetics.from_pretrained(model_name)
     model.eval()
 
     predictions = model.predict_from_files(audio_file)
@@ -30,7 +32,7 @@ def test_inference():
 
 def test_inference_load_from_jsonl():
     audio_file_list = AudioFileList.from_jsonl("sample_audio/test.jsonl")
-    model = AudioBoxAesthetics.from_pretrained("audiobox-aesthetics")
+    model = AudioBoxAesthetics.from_pretrained(model_name)
     model.eval()
 
     predictions = model.predict_from_files(audio_file_list)
@@ -44,7 +46,7 @@ def test_inference_load_from_jsonl():
 
 def test_inference_twice_on_same_audio_yields_same_result():
     audio_file = AudioFile(path="sample_audio/libritts_spk-84.wav")
-    model = AudioBoxAesthetics.from_pretrained("audiobox-aesthetics")
+    model = AudioBoxAesthetics.from_pretrained(model_name)
     model.eval()
 
     predictions_a = model.predict_from_files(audio_file)
@@ -61,7 +63,7 @@ def test_inference_twice_on_same_audio_yields_same_result():
 
 def test_loading_from_wav():
     audio_path = "sample_audio/libritts_spk-84.wav"
-    model = AudioBoxAesthetics.from_pretrained("audiobox-aesthetics")
+    model = AudioBoxAesthetics.from_pretrained(model_name)
     model.eval()
 
     wav = model.load_audio(audio_path)
