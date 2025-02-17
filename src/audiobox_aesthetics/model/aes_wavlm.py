@@ -9,6 +9,8 @@ import logging
 from torch import nn
 import torch
 
+from huggingface_hub import PyTorchModelHubMixin
+
 from .utils import create_mlp_block
 from .wavlm import WavLM, WavLMConfig
 
@@ -72,7 +74,7 @@ AXES_NAME = ["CE", "CU", "PC", "PQ"]
 
 
 @dataclass(eq=False)
-class WavlmAudioEncoderMultiOutput(nn.Module):
+class WavlmAudioEncoderMultiOutput(nn.Module, PyTorchModelHubMixin, repo_url="https://github.com/facebookresearch/audiobox-aesthetics", pipeline_tag="audio-classification", license="cc-by-4.0"):
     proj_num_layer: int = 1
     proj_ln: bool = False
     proj_act_fn: str = "gelu"
