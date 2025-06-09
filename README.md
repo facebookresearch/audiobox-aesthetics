@@ -33,7 +33,8 @@ All axes | [checkpoint.pt](https://dl.fbaipublicfiles.com/audiobox-aesthetics/ch
 
 ### How to run prediction using CLI:
 
-1. Create a jsonl files with the following format
+1. Create a jsonl files with the following format (for instance using `find /path/to/your/folder -type f \( -iname "*.wav" -o -iname "*.flac" \) | jq -R -c '{path: .}' > files.jsonl`):
+
  ```
  {"path":"/path/to/a.wav"}
  {"path":"/path/to/b.flac"}
